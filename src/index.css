@@ -1,0 +1,117 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 自定义滚动条样式 */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: color-mix(in srgb, var(--text-main), transparent 80%);
+  border-radius: 3px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: color-mix(in srgb, var(--accent), transparent 50%);
+}
+
+/* 细滚动条样式 */
+.custom-scrollbar-sm::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+.custom-scrollbar-sm::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar-sm::-webkit-scrollbar-thumb {
+  background-color: color-mix(in srgb, var(--text-main), transparent 80%);
+  border-radius: 2px;
+}
+
+.custom-scrollbar-sm::-webkit-scrollbar-thumb:hover {
+  background-color: color-mix(in srgb, var(--accent), transparent 50%);
+}
+
+/* 隐藏滚动条（保持滚动功能）*/
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  /* IE/Edge */
+  scrollbar-width: none;
+  /* Firefox */
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+  /* Chrome/Safari */
+}
+
+/* 背景点阵类，如果在 tailwind.config.js 配置未生效可作为后备 */
+.bg-dots-pattern {
+  background-image: radial-gradient(#cbd5e1 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* 全局选中文字颜色适配 */
+::selection {
+  background-color: color-mix(in srgb, var(--accent), transparent 70%);
+  color: inherit;
+}
+
+/* 全局输入框光标颜色适配 */
+input,
+textarea {
+  caret-color: var(--accent);
+}
+
+/* 性能优先模式 (手机端) - 禁用所有动画和视觉效果 */
+.perf-mode * {
+  /* 禁用毛玻璃效果 */
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  /* 禁用所有过渡动画 */
+  transition-property: none !important;
+  transition-duration: 0s !important;
+  transition-delay: 0s !important;
+  /* 禁用所有关键帧动画 */
+  animation: none !important;
+  animation-duration: 0s !important;
+  /* 禁用 transform 动画（但保留 transform 本身） */
+  transition: none !important;
+}
+
+/* 覆盖 Tailwind 的各种 transition 类 */
+.perf-mode .transition,
+.perf-mode .transition-all,
+.perf-mode .transition-colors,
+.perf-mode .transition-opacity,
+.perf-mode .transition-shadow,
+.perf-mode .transition-transform {
+  transition-property: none !important;
+  transition-duration: 0s !important;
+}
+
+/* 禁用 hover 动画效果 */
+.perf-mode *:hover {
+  transition: none !important;
+}
+
+/* 禁用 duration 类 */
+.perf-mode .duration-75,
+.perf-mode .duration-100,
+.perf-mode .duration-150,
+.perf-mode .duration-200,
+.perf-mode .duration-300,
+.perf-mode .duration-500,
+.perf-mode .duration-700,
+.perf-mode .duration-1000 {
+  transition-duration: 0s !important;
+  animation-duration: 0s !important;
+}

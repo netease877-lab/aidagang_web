@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+  <!-- [新增] PWA 支持 -->
+  <meta name="theme-color" content="#3b82f6" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="大纲工坊" />
+  <link rel="apple-touch-icon" href="/pwa-192x192.png" />
+  <title>小说大纲工坊</title>
+</head>
+
+<body>
+  <div id="root"></div>
+  <script>
+    (function () {
+      try {
+        // Pre-apply theme background to prevent white flash
+        var themeId = localStorage.getItem('novel_theme_id');
+        var workspaceBg = localStorage.getItem('novel_workspace_bg');
+
+        if (document.documentElement) {
+          // Apply dark theme default if needed, or specific theme colors if known
+          // Here we just prevent white flash by setting a darker bg if theme is likely dark
+          // Or better: if we know the colors map.
+          // Since we don't have the colors map here easily, we rely on the JS loading fast.
+          // But at least we can set the workspaceBg if seamless mode is off.
+          if (themeId && themeId !== 'default' && themeId !== 'light') {
+            document.documentElement.style.backgroundColor = '#1e293b'; // Fallback dark for known dark themes
+          }
+          if (workspaceBg) {
+            // document.body.style.backgroundColor = workspaceBg; // Actually root handles it usually
+          }
+        }
+      } catch (e) { }
+    })();
+  </script>
+  <script type="module" src="./src/main.jsx"></script>
+</body>
+
+</html>
